@@ -22,18 +22,17 @@ public class Electronics extends Item
 	//Implement calculate price/print methods as necessary
 	public float calculatePrice () 
 	{
-		//regular sales tax, standard shipping
 		float finalprice = 0;
 		
-		if(premium == "F") {
+		if(premium == "F") {    //premium shipping is 20% more
 			finalprice += 12*weight*quantity;
-		} else if (premium == "NF"){
+		} else if (premium == "NF"){   //standard shipping
 			finalprice += 10*weight*quantity;
 		} 
 		
 		if(state == "TX" || state == "NM" || state == "VA" || state == "AZ" || state == "AK") {
 			finalprice += price;
-		} else {
+		} else {  //all other states have sales tax (but not on shipping)
 			finalprice += 1.1*price;
 		}
 		
