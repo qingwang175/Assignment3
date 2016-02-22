@@ -2,10 +2,10 @@ package Assignment3;
 
 public class Electronics extends Item 
 {
-	String state;
-	
-	
+	protected String fragile;
+	protected String state;
 	// Variables, constructors etc. here.
+	
 	public Electronics(String name, float price, int quantity, int weight, String premium, String state) {
 		super(name, price, quantity, weight, premium);
 		this.name = name;
@@ -17,10 +17,10 @@ public class Electronics extends Item
 		}
 		this.weight= weight;
 		this.quantity = quantity;
-		this.state = state;
 	}
 	
 	//Implement calculate price/print methods as necessary
+
 	public float calculatePrice () 
 	{
 		float finalprice = 0;
@@ -40,17 +40,16 @@ public class Electronics extends Item
 		return finalprice;
 	}
 	
-	void printItemAttributes () 
-	{	
-		String notWord = "";    //simple word to put in the item attribute string
-		if(premium == "F") {
-			notWord = "not ";
-		}
-		//Print all applicable attributes of this sub-class
-		System.out.println(name + ": $" + price + ", for " + quantity + ", " + 
-				weight + " lbs, and is from " + state + 
-				" and is " + notWord + "fragile.");
-		
+	void printItemAttributes(){
+		System.out.println("Item type: Electronics");
+		System.out.println("Item name: " + name);
+		System.out.printf("Item price: $%.2f%n",price);
+		System.out.println("Item quantity: " + quantity);
+		System.out.println("Item weight: " +  weight + " lbs");
+		System.out.println("Premium (P or NP): " + premium);
+		System.out.println("Fragile (F or NF): " + fragile);
+		System.out.println("Shipping to: " + state);
 	}
+
 	
 }
