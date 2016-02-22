@@ -2,6 +2,8 @@ package Assignment3;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class Functions {
 
 	public void printAll(ArrayList<Item> shoppingCart) {
@@ -10,9 +12,11 @@ public class Functions {
 			return;
 		}
 		float sum = 0;
-		for(int i = 0; i < shoppingCart.size(); i++) {
-			shoppingCart.get(i).printItemAttributes();
-			float eachprice = shoppingCart.get(i).calculatePrice();
+		Iterator<Item> i = shoppingCart.iterator();
+		while (i.hasNext()) {
+			Item temp = i.next();
+			temp.printItemAttributes();
+			float eachprice = temp.calculatePrice();
 			sum += (float) (eachprice - eachprice%100);
 			System.out.println();
 		}
@@ -21,7 +25,8 @@ public class Functions {
 	}
 	
 	public ArrayList<Item> insertItem(ArrayList<Item> shoppingCart, String[] inputString) {
-		/* if(shoppingCart.size() == 0) {
+		/*
+		 * if(shoppingCart.size() == 0) {
 			shoppingCart.add()
 		}
 		int offset = 0;
@@ -52,8 +57,10 @@ public class Functions {
 		if(shoppingCart.size() == 0) {
 			errorMessage("Empty cart");
 		} else {
-			for(int i = 0; i < shoppingCart.size(); i++) {
-				if(name == shoppingCart.get(i).name) {
+			Iterator<Item> i = shoppingCart.iterator();
+			while (i.hasNext()) {
+				Item temp = i.next();
+				if(name == temp.name) {
 					matches++;
 				}
 			}
@@ -62,7 +69,28 @@ public class Functions {
 		return;
 	}
 	
+	public ArrayList<Item> updateItem(ArrayList<Item> shoppingCart, String name, int quantity) {
+		if(shoppingCart.size() == 0) {
+			errorMessage("Empty cart");
+		} else {
+			for(int i = 0; i < shoppingCart.size(); i++) {
+				if(name == shoppingCart.get(i).name) {
+					shoppingCart.get(i).quantity = quantity;
+					System.out.println(name + " quantity updated to " + quantity + ".");
+					return shoppingCart;
+				}
+			}
+		}
+		System.out.println(name + " not found.");
+		return shoppingCart;
+	}
+	
 	private void errorMessage(String error) {
-		return;
+		if(error == "Empty cart") {
+			JOptionPane.showMessageDialog(null,
+					"Empty Cart.",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
