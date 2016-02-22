@@ -10,7 +10,9 @@ public class Item {
 
 
 // You will need a constructor (Why?). Create it here.
-	public Item(String name, float price, int weight, int quantity, String premium){
+
+	
+	public Item(String name, float price, int quantity, int weight, String premium){
 		this.name = name;
 		this.price = price;
 		this.premium = premium;

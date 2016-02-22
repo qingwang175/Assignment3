@@ -11,15 +11,17 @@ public class Clothing extends Item
 	public float calculatePrice () 
 	{
 		//regular sales tax, standard shipping
-		return (float) (1.1*price + 20*weight*quantity);   
+		return (float) (1.10*price*quantity + 20*weight*quantity);   
 	}
 	
 	void printItemAttributes () 
 	{
 		//Print all applicable attributes of this sub-class
-		System.out.println(name + ": $" + price + ", for " + quantity + ", " + 
-				weight + " lbs.");
-		
+		System.out.println("Item type: Clothing");
+		System.out.println("Item name: " + name);
+		System.out.printf("Item price: $%.2f%n" ,price);
+		System.out.println("Item quantity: " + quantity);
+		System.out.println("Item weight: " +  weight + " lbs");
 	}
 	
 
