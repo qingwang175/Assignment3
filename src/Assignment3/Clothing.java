@@ -16,7 +16,7 @@ public class Clothing extends Item
 	public float calculatePrice () 
 	{
 		//regular sales tax, standard shipping
-		return (float) (1.10*price + 20*weight*quantity);   
+		return (float) (1.10*price*quantity + 20*weight*quantity);   
 	}
 	
 	void printItemAttributes () 

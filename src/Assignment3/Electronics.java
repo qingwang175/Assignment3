@@ -32,9 +32,9 @@ public class Electronics extends Item
 		} 
 		
 		if(state == "TX" || state == "NM" || state == "VA" || state == "AZ" || state == "AK") {
-			finalprice += price;
+			finalprice += price*quantity;
 		} else {  //all other states have sales tax (but not on shipping)
-			finalprice += 1.1*price;
+			finalprice += 1.1*price*quantity;
 		}
 		
 		return finalprice;
