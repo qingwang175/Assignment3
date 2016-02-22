@@ -12,6 +12,7 @@ public class Electronics extends Item
 		if(fragile.equals("F"))
 			this.premium = "P";
 	}
+	
 	//Implement calculate price/print methods as necessary
 	float calculatePrice(){
 		float final_price;
@@ -43,4 +44,6 @@ public class Electronics extends Item
 		System.out.println("Fragile (F or NF): " + fragile);
 		System.out.println("Shipping to: " + state);
 	}
+
+	
 }
