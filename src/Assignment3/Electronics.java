@@ -7,12 +7,13 @@ public class Electronics extends Item
 	
 	// Variables, constructors etc. here.
 	public Electronics(String name, float price, int quantity, int weight, String premium, String state) {
+		super(name, price, quantity, weight, premium);
 		this.name = name;
 		this.price = price;
 		if(premium == "NF") {
 			this.premium = "NF";
 		} else {
-			this.premium = "N";
+			this.premium = "F";
 		}
 		this.weight= weight;
 		this.quantity = quantity;
@@ -25,9 +26,9 @@ public class Electronics extends Item
 		float finalprice = 0;
 		
 		if(premium == "F") {    //premium shipping is 20% more
-			finalprice += 12*weight*quantity;
+			finalprice += 24*weight*quantity;
 		} else if (premium == "NF"){   //standard shipping
-			finalprice += 10*weight*quantity;
+			finalprice += 20*weight*quantity;
 		} 
 		
 		if(state == "TX" || state == "NM" || state == "VA" || state == "AZ" || state == "AK") {
@@ -42,7 +43,7 @@ public class Electronics extends Item
 	void printItemAttributes () 
 	{	
 		String notWord = "";    //simple word to put in the item attribute string
-		if(premium == "N") {
+		if(premium == "F") {
 			notWord = "not ";
 		}
 		//Print all applicable attributes of this sub-class
