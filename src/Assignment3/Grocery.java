@@ -22,10 +22,7 @@ public class Grocery extends Item {
 	
 	void printItemAttributes(){
 		System.out.println("Item type: Grocery");
-		System.out.println("Item name: " + name);
-		System.out.printf("Item price: $%.2f%n",price);
-		System.out.println("Item quantity: " + quantity);
-		System.out.println("Item weight: " +  weight + " lbs");
+		super.printItemAttributes();
 		System.out.println("Perishable (P or NP): " + premium);	
 	}
 }

@@ -37,12 +37,10 @@ public class Item {
 
 	void printItemAttributes () 	//Print all applicable attributes of this class
 	{
-		System.out.println("Item type: Item");
 		System.out.println("Item name: " + name);
 		System.out.printf("Item price: $%.2f%n",price);
 		System.out.println("Item quantity: " + quantity);
 		System.out.println("Item weight: " +  weight + " lbs");
-		System.out.println("Premium (P or NP): " + premium);
 	}
 
 }

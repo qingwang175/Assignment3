@@ -18,10 +18,7 @@ public class Clothing extends Item
 	{
 		//Print all applicable attributes of this sub-class
 		System.out.println("Item type: Clothing");
-		System.out.println("Item name: " + name);
-		System.out.printf("Item price: $%.2f%n" ,price);
-		System.out.println("Item quantity: " + quantity);
-		System.out.println("Item weight: " +  weight + " lbs");
+		super.printItemAttributes();
 	}
 	
 
