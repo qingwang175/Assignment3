@@ -9,7 +9,7 @@ public class Grocery extends Item {
 	}
 	//override calculatePrice() if necessary; Implement print methods as necessary	
 	// Only re-implement stuff you cannot get from the superclass (Item)
-	float calculatePrice(){
+	public float calculatePrice(){
 		float final_price = 0;
 		if(premium.equals("P")) {    //premium shipping is 20% more
 			final_price = final_price + 24*weight*quantity;

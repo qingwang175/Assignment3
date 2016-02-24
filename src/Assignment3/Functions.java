@@ -15,6 +15,7 @@ public class Functions {
 			return;
 		}
 		float sum = 0;   //Keep track of the sum while iterating
+		System.out.println("\nTotal Summary: \n");
 		for(int i = 0; i < shoppingCart.size(); i++) {  
 			Item temp = shoppingCart.get(i);
 			temp.printItemAttributes();
@@ -39,7 +40,6 @@ public class Functions {
 				}
 			}
 		}
-		System.out.println(temp);
 			
 		if(temp.equals("groceries")) {     //Make new item and put it in your cart with your command inputs
 			Grocery newItem = new Grocery(command[2], Float.parseFloat(command[3]),
@@ -47,7 +47,7 @@ public class Functions {
 			shoppingCart.add(offset, newItem);
 			System.out.println("New " + command[2] + " grocery item in cart costing $" 
 					+ command[3] + " with " + command[4] + " items, total weight: "
-					+ command[5] + " lbs.");
+					+ command[5] + " lbs, fragility: " + command[6] + ".");
 		} else if(temp.equals("electronics")) {
 			Electronics newItem = new Electronics(command[2], Float.parseFloat(command[3]),
 				Double.valueOf(command[4]).intValue(), Double.valueOf(command[5]).intValue(), command[6], command[7]);
@@ -61,7 +61,7 @@ public class Functions {
 			shoppingCart.add(offset, newItem);
 			System.out.println("New " + command[2] + " clothing item in cart costing $" 
 					+ command[3] + " with " + command[4] + " items, total weight: "
-					+ command[5] + " lbs, fragility: " + command[6] + ".");
+					+ command[5] + " lbs.");
 		}
 		return shoppingCart;
 	}
@@ -79,7 +79,7 @@ public class Functions {
 				}
 			}
 		}
-		System.out.println("Total " + name + "'s deleted: " + deletes);
+		System.out.println("Total " + name + "s deleted: " + deletes);
 		return shoppingCart;
 	}
 	

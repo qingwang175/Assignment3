@@ -84,11 +84,9 @@ public class ShoppingCartDriver {
 						return true;
 				else
 					return false;
-			}
-			else if(s.equals("print") && command.length != 1){
+			} else if(s.equals("print") && command.length != 1){
 				JOptionPane.showMessageDialog(null, "Could not print. Only type 'print'. Moving on.");
-			}
-			else if(s.equals("insert")){
+			} else if(s.equals("insert")){
 				if(command.length < 6 || command.length > 8)
 					JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
 				else{
@@ -131,12 +129,15 @@ public class ShoppingCartDriver {
 							else
 								return false;
 						}
+					} else if(command[1].equals("clothing")){
+						if(command.length == 6) {
+							return false;
+						}
 					}
-								
 				}
+			} else {
+				return false; 
 			}
-			else
-				return false;
 			return true;
 		}
 		
