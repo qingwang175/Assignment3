@@ -27,18 +27,26 @@ public class ShoppingCartDriver {
 			{
 				FileReader freader = new FileReader(filename);
 				BufferedReader reader = new BufferedReader(freader);
-				
+				Functions function = new Functions();
 				for (String s = reader.readLine(); s != null; s = reader.readLine()) 
 				{
 					String[] command = s.split(" ");
 					if(!hasError(command)){ //if there are no errors in command, proceed
-						//Actual functions here
+						String temp = command[0].toLowerCase();
+						if(temp.equals("insert")) {
+							shoppingCart = function.insertItem(shoppingCart, command);
+						} else if (temp.equals("delete")) {
+							shoppingCart = function.deleteItem(shoppingCart, command[1]);
+						} else if (temp.equals("search")) {
+							function.searchItem(shoppingCart, command[1]);
+						} else if (temp.equals("update")) {
+							shoppingCart = function.updateItem(shoppingCart, command[1], Integer.parseInt(command[2]));
+						} else if (temp.equals("print")) {
+							function.printAll(shoppingCart);
+						}
 					}
 					else //if so, go to next line in text file
 						continue;
-
-					//System.out.println(fine);
-					//Actual functions here
 				}
 			} 
 			catch (FileNotFoundException e) 

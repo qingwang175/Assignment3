@@ -5,6 +5,9 @@ import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Functions {
+	
+	public Functions() { //empty constructor to use in main
+	}
 
 	public void printAll(ArrayList<Item> shoppingCart) {
 		if(shoppingCart.size() == 0) {
@@ -24,14 +27,34 @@ public class Functions {
 		
 	}
 	
-	public ArrayList<Item> insertItem(ArrayList<Item> shoppingCart, String[] inputString) {
-		/*
-		 * if(shoppingCart.size() == 0) {
-			shoppingCart.add()
-		}
+	public ArrayList<Item> insertItem(ArrayList<Item> shoppingCart, String[] command) {
+		String temp = command[1].toLowerCase();
 		int offset = 0;
 		
-		*/
+		if(shoppingCart.size() != 0) {     //If empty shopping cart, offput automatically puts it in slot 0 
+			if(shoppingCart.get(shoppingCart.size() - 1).name.compareTo(command[2]) < 0) {           //Check last case first
+				offset = shoppingCart.size();
+			} else {
+				while(shoppingCart.get(offset).name.compareTo(command[2]) < 0 && (offset + 1) < shoppingCart.size()) {    //Check every other case to see where to put item in alphebetically
+					offset++;
+				}
+			}
+		}
+			
+		if(temp.equals("groceries")) {     //Make new item and put it in your cart with your command inputs
+			Grocery newItem = new Grocery(command[2], Float.parseFloat(command[3]),
+				Integer.parseInt(command[4]), Integer.parseInt(command[5]), command[6]);
+			shoppingCart.add(offset, newItem);
+		} else if(temp.equals("electronics")) {
+			Electronics newItem = new Electronics(command[2], Float.parseFloat(command[3]),
+				Integer.parseInt(command[4]), Integer.parseInt(command[5]), command[6], command[7]);
+			shoppingCart.add(offset, newItem);
+		} else if(temp.equals("clothing")) {
+			Clothing newItem = new Clothing(command[2], Float.parseFloat(command[3]),
+				Integer.parseInt(command[4]), Integer.parseInt(command[5]), "N");
+			shoppingCart.add(offset, newItem);
+			}
+		
 		return shoppingCart;
 	}
 	
