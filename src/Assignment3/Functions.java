@@ -10,12 +10,12 @@ public class Functions {
 	}
 
 	public void printAll(ArrayList<Item> shoppingCart) {
-		if(shoppingCart.size() == 0) {
+		if(shoppingCart.size() == 0) {        //Don't bother going through an empty cart
 			errorMessage("Empty cart");
 			return;
 		}
-		float sum = 0;
-		Iterator<Item> i = shoppingCart.iterator();
+		float sum = 0;   //Keep track of the sum while iterating
+		Iterator<Item> i = shoppingCart.iterator();   //Iterate through 
 		while (i.hasNext()) {
 			Item temp = i.next();
 			temp.printItemAttributes();
@@ -23,7 +23,7 @@ public class Functions {
 			sum += (float) (eachprice - eachprice%100);
 			System.out.println();
 		}
-		System.out.println("Total price: $" + sum + ".");
+		System.out.println("Total price: $" + sum + ".");  //Output total price
 		
 	}
 	
@@ -45,16 +45,24 @@ public class Functions {
 			Grocery newItem = new Grocery(command[2], Float.parseFloat(command[3]),
 				Integer.parseInt(command[4]), Integer.parseInt(command[5]), command[6]);
 			shoppingCart.add(offset, newItem);
+			System.out.println("New " + command[2] + " grocery item in cart costing " 
+					+ command[3] + " for " + command[4] + " items, total weight: "
+					+ command[5] + " lbs.");
 		} else if(temp.equals("electronics")) {
 			Electronics newItem = new Electronics(command[2], Float.parseFloat(command[3]),
 				Integer.parseInt(command[4]), Integer.parseInt(command[5]), command[6], command[7]);
 			shoppingCart.add(offset, newItem);
+			System.out.println("New " + command[2] + " electronic item in cart costing " 
+					+ command[3] + " for " + command[4] + " items from " + command[7] + ", total weight: "
+					+ command[5] + " lbs, fragility: " + command[6] + ".");
 		} else if(temp.equals("clothing")) {
 			Clothing newItem = new Clothing(command[2], Float.parseFloat(command[3]),
 				Integer.parseInt(command[4]), Integer.parseInt(command[5]), "N");
 			shoppingCart.add(offset, newItem);
+			System.out.println("New " + command[2] + " clothing item in cart costing " 
+					+ command[3] + " for " + command[4] + " items, total weight: "
+					+ command[5] + " lbs, fragility: " + command[6] + ".");
 			}
-		
 		return shoppingCart;
 	}
 	
@@ -65,7 +73,7 @@ public class Functions {
 		} else {
 			for(int i = 0; i < shoppingCart.size(); i++) {
 				if(name == shoppingCart.get(i).name) {
-					shoppingCart.remove(i);
+					shoppingCart.remove(i);     //Remove all versions of this item, remove the ones taken out through the index
 					i--;
 					deletes++;
 				}
@@ -84,7 +92,7 @@ public class Functions {
 			while (i.hasNext()) {
 				Item temp = i.next();
 				if(name == temp.name) {
-					matches++;
+					matches++;      //Track all matches and keep track of the number (not just one)
 				}
 			}
 		}
@@ -93,13 +101,13 @@ public class Functions {
 	}
 	
 	public ArrayList<Item> updateItem(ArrayList<Item> shoppingCart, String name, int quantity) {
-		if(shoppingCart.size() == 0) {
+		if(shoppingCart.size() == 0) {     //Don't bother checking empty cart
 			errorMessage("Empty cart");
 		} else {
-			for(int i = 0; i < shoppingCart.size(); i++) {
+			for(int i = 0; i < shoppingCart.size(); i++) {    //Check through the arraylist
 				if(name == shoppingCart.get(i).name) {
 					shoppingCart.get(i).quantity = quantity;
-					System.out.println(name + " quantity updated to " + quantity + ".");
+					System.out.println(name + " quantity updated to " + quantity + ".");   //Only change the first item of this name and then leave
 					return shoppingCart;
 				}
 			}
@@ -108,7 +116,7 @@ public class Functions {
 		return shoppingCart;
 	}
 	
-	private void errorMessage(String error) {
+	private void errorMessage(String error) {     //One error message for an empty cart
 		if(error == "Empty cart") {
 			JOptionPane.showMessageDialog(null,
 					"Empty Cart.",
