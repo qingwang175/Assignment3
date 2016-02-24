@@ -12,11 +12,11 @@ public class Grocery extends Item {
 	float calculatePrice(){
 		float final_price = 0;
 		if(premium.equals("P")) {    //premium shipping is 20% more
-			final_price += 24*weight*quantity;
+			final_price = final_price + 24*weight*quantity;
 		} else if (premium.equals("NP")){   //standard shipping
-			final_price += 20*weight*quantity;
+			final_price = final_price + 20*weight*quantity;
 		} 
-		final_price += price*quantity;
+		final_price = final_price + price*quantity;
 		return final_price;
 	}
 	

@@ -15,15 +15,14 @@ public class Functions {
 			return;
 		}
 		float sum = 0;   //Keep track of the sum while iterating
-		Iterator<Item> i = shoppingCart.iterator();   //Iterate through 
-		while (i.hasNext()) {
-			Item temp = i.next();
+		for(int i = 0; i < shoppingCart.size(); i++) {  
+			Item temp = shoppingCart.get(i);
 			temp.printItemAttributes();
 			float eachprice = temp.calculatePrice();
-			sum += (float) (eachprice - eachprice%100);
+			sum += (float) (eachprice);
 			System.out.println();
 		}
-		System.out.println("Total price: $" + sum + ".");  //Output total price
+		System.out.println("Total price: $" + sum + ".\n");  //Output total price
 		
 	}
 	
@@ -40,29 +39,30 @@ public class Functions {
 				}
 			}
 		}
+		System.out.println(temp);
 			
 		if(temp.equals("groceries")) {     //Make new item and put it in your cart with your command inputs
 			Grocery newItem = new Grocery(command[2], Float.parseFloat(command[3]),
-				Integer.parseInt(command[4]), Integer.parseInt(command[5]), command[6]);
+					Double.valueOf(command[4]).intValue(), Double.valueOf(command[5]).intValue(), command[6]);
 			shoppingCart.add(offset, newItem);
-			System.out.println("New " + command[2] + " grocery item in cart costing " 
-					+ command[3] + " for " + command[4] + " items, total weight: "
+			System.out.println("New " + command[2] + " grocery item in cart costing $" 
+					+ command[3] + " with " + command[4] + " items, total weight: "
 					+ command[5] + " lbs.");
 		} else if(temp.equals("electronics")) {
 			Electronics newItem = new Electronics(command[2], Float.parseFloat(command[3]),
-				Integer.parseInt(command[4]), Integer.parseInt(command[5]), command[6], command[7]);
+				Double.valueOf(command[4]).intValue(), Double.valueOf(command[5]).intValue(), command[6], command[7]);
 			shoppingCart.add(offset, newItem);
-			System.out.println("New " + command[2] + " electronic item in cart costing " 
-					+ command[3] + " for " + command[4] + " items from " + command[7] + ", total weight: "
+			System.out.println("New " + command[2] + " electronic item in cart costing $" 
+					+ command[3] + " with " + command[4] + " items from " + command[7] + ", total weight: "
 					+ command[5] + " lbs, fragility: " + command[6] + ".");
 		} else if(temp.equals("clothing")) {
 			Clothing newItem = new Clothing(command[2], Float.parseFloat(command[3]),
-				Integer.parseInt(command[4]), Integer.parseInt(command[5]), "N");
+					Double.valueOf(command[4]).intValue(), Double.valueOf(command[5]).intValue(), "N");
 			shoppingCart.add(offset, newItem);
-			System.out.println("New " + command[2] + " clothing item in cart costing " 
-					+ command[3] + " for " + command[4] + " items, total weight: "
+			System.out.println("New " + command[2] + " clothing item in cart costing $" 
+					+ command[3] + " with " + command[4] + " items, total weight: "
 					+ command[5] + " lbs, fragility: " + command[6] + ".");
-			}
+		}
 		return shoppingCart;
 	}
 	
@@ -72,7 +72,7 @@ public class Functions {
 			errorMessage("Empty cart");
 		} else {
 			for(int i = 0; i < shoppingCart.size(); i++) {
-				if(name == shoppingCart.get(i).name) {
+				if(name.equals(shoppingCart.get(i).name)) {
 					shoppingCart.remove(i);     //Remove all versions of this item, remove the ones taken out through the index
 					i--;
 					deletes++;
@@ -88,15 +88,14 @@ public class Functions {
 		if(shoppingCart.size() == 0) {
 			errorMessage("Empty cart");
 		} else {
-			Iterator<Item> i = shoppingCart.iterator();
-			while (i.hasNext()) {
-				Item temp = i.next();
-				if(name == temp.name) {
+			for(int i = 0; i < shoppingCart.size(); i++) {  
+				Item temp = shoppingCart.get(i);
+				if(name.equals(temp.name)) {
 					matches++;      //Track all matches and keep track of the number (not just one)
 				}
 			}
 		}
-		System.out.println("Total " + name + "'s found: " + matches);
+		System.out.println("Total " + name + "s found: " + matches);
 		return;
 	}
 	
@@ -105,7 +104,8 @@ public class Functions {
 			errorMessage("Empty cart");
 		} else {
 			for(int i = 0; i < shoppingCart.size(); i++) {    //Check through the arraylist
-				if(name == shoppingCart.get(i).name) {
+				Item temp = shoppingCart.get(i);
+				if(name.equals(temp.name)) {
 					shoppingCart.get(i).quantity = quantity;
 					System.out.println(name + " quantity updated to " + quantity + ".");   //Only change the first item of this name and then leave
 					return shoppingCart;
