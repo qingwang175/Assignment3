@@ -31,11 +31,10 @@ public class ShoppingCartDriver {
 				for (String s = reader.readLine(); s != null; s = reader.readLine()) 
 				{
 					String[] command = s.split(" ");
-					if(!hasError(command)){
+					if(!hasError(command)){ //if there are no errors in command, proceed
 						//Actual functions here
-						System.out.println("Correct!");
 					}
-					else
+					else //if so, go to next line in text file
 						continue;
 
 					//System.out.println(fine);
@@ -55,6 +54,7 @@ public class ShoppingCartDriver {
 			}
 		}
 		
+		//checks length and type of each element in command returns true if there's an error
 		public static boolean hasError(String[] command){
 			if(command.length < 1){
 				JOptionPane.showMessageDialog(null, "No command typed. Moving on.");
@@ -131,6 +131,7 @@ public class ShoppingCartDriver {
 				return false;
 			return true;
 		}
+		
 		//checks if String is an integer
 		public static boolean isInteger(String str) {
 		    try {
@@ -151,6 +152,7 @@ public class ShoppingCartDriver {
 		    }
 		}
 		
+		//check if String is a valid US state code
 		public static boolean checkState(String str){
 			if(str.matches("AL|AK|AR|AZ|CA|CO|CT|DE|DC|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA") ||
 			str.matches("ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR") ||

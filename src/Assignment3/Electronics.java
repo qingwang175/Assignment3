@@ -33,13 +33,16 @@ public class Electronics extends Item
 	void printItemAttributes () 
 	{	
 		String notWord = "";    //simple word to put in the item attribute string
-		if(premium == "N") {
+		if(premium == "NP") {
 			notWord = "not ";
 		}
-		//Print all applicable attributes of this sub-class
-		System.out.println(name + ": $" + price + ", for " + quantity + ", " + 
-				weight + " lbs, and is from " + state + 
-				" and is " + notWord + "fragile.");
+		
+		System.out.println("Item type: Electronics");
+		super.printItemAttributes();
+		System.out.println("Perishable (P or NP): " + premium);	
+		System.out.println("Item is " + notWord + " fragile" );
+		System.out.println("Item will ship to: " + state);
+		
 		
 	}
 	
