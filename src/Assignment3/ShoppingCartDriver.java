@@ -77,11 +77,11 @@ public class ShoppingCartDriver {
 			else if((s.equals("update"))){
 				if(command.length != 3)
 					JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
-				else if(!isDouble(command[2])) //check quantity
+				else if(isDouble(command[2])) //check quantity
 					if(!isInteger(command[2]) || Integer.parseInt(command[2]) < 0)
 						JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
 					else
-						return true;
+						return false;
 				else
 					return false;
 			} else if(s.equals("print") && command.length != 1){
@@ -105,7 +105,7 @@ public class ShoppingCartDriver {
 							JOptionPane.showMessageDialog(null, "Not a proper weight. Moving on.");
 						else
 							return true;
-					else if(command[1].equals("groceries")){
+					else if(item.equals("groceries")){
 						if(command.length != 7)
 							JOptionPane.showMessageDialog(null, "Need to indicate perishability. Moving on.");
 						else{
@@ -116,7 +116,7 @@ public class ShoppingCartDriver {
 								return false;
 						}
 					}
-					else if(command[1].equals("electronics")){
+					else if(item.equals("electronics")){
 						if(command.length != 8)
 							JOptionPane.showMessageDialog(null, "Need to indicate fragility and shipping state. Moving on.");
 						else{
@@ -129,9 +129,9 @@ public class ShoppingCartDriver {
 							else
 								return false;
 						}
-					} else if(command[1].equals("clothing")){
-						if(command.length == 6) {
-							return false;
+					} else if(item.equals("clothing")){
+						if(command.length != 6) {
+							JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
 						}
 					}
 				}
