@@ -66,69 +66,85 @@ public class A3Driver{
 		public static boolean hasError(String[] command){
 			if(command.length < 1){
 				JOptionPane.showMessageDialog(null, "No command typed. Moving on.");
+				return true;
 			}
 			String s = command[0].toLowerCase();
 			if (!(s.equals("insert") || s.equals("search") || s.equals("delete") || s.equals("update") || s.equals("print"))){
 				JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
+				return true;
 			}
 			else if((s.equals("search") || s.equals("delete")) && command.length != 2){
 				JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
+				return true;
 			}
 			else if((s.equals("update"))){
-				if(command.length != 3)
+				if(command.length != 3) {
 					JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
-				else if (!isInteger(command[2]))
+					return true;
+				} else if (!isInteger(command[2])) {
 					JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
-				else
+					return true;
+				} else
 					return false;
 			} else if(s.equals("print") && command.length != 1){
 				JOptionPane.showMessageDialog(null, "Could not print. Only type 'print'. Moving on.");
+				return true;
 			} else if(s.equals("insert")){
-				if(command.length < 6 || command.length > 8)
+				if(command.length < 6 || command.length > 8) {
 					JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
-				else{
+					return true;
+				} else {
 					String item = command[1].toLowerCase();
-					if(!(item.equals("electronics") || item.equals("groceries") || item.equals("clothing")))
+					if(!(item.equals("electronics") || item.equals("groceries") || item.equals("clothing"))) {
 						JOptionPane.showMessageDialog(null, "Not a proper item type. Moving on.");
-					else if(!isDouble(command[3])) //check price
+						return true;
+					} else if(!isDouble(command[3])) { //check price
 						JOptionPane.showMessageDialog(null, "Not a proper price. Moving on.");
-					else if(!isInteger(command[4])) //check quantity
+						return true;
+					} else if(!isInteger(command[4])) { //check quantity
 						JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
-					else if(!isInteger(command[5])) //check weight
+						return true;
+					} else if(!isInteger(command[5])) { //check weight
 						JOptionPane.showMessageDialog(null, "Not a proper weight. Moving on.");
-					else if(item.equals("groceries")){
-						if(command.length != 7)
+						return true;
+					} else if(item.equals("groceries")){  //Grocery specific test
+						if(command.length != 7) {
 							JOptionPane.showMessageDialog(null, "Need to indicate perishability. Moving on.");
-						else{
+							return true;
+						} else{
 							String upper = command[6].toUpperCase();
-							if(!(upper.equals("P") || upper.equals("NP")))
+							if(!(upper.equals("P") || upper.equals("NP"))) {
 								JOptionPane.showMessageDialog(null, "Must input 'P' or 'NP' for 5th field. Moving on");
-							else
+								return true;
+							} else
 								return false;
 						}
-					}
-					else if(item.equals("electronics")){
-						if(command.length != 8)
+					} else if(item.equals("electronics")){   //Electronic specific case
+						if(command.length != 8) {
 							JOptionPane.showMessageDialog(null, "Need to indicate fragility and shipping state. Moving on.");
-						else{
+							return true;
+						} else {
 							String upper = command[6].toUpperCase();
 							String state = command[7].toUpperCase();
-							if(!(upper.equals("F") || upper.equals("NF")))
+							if(!(upper.equals("F") || upper.equals("NF"))) {
 								JOptionPane.showMessageDialog(null, "Must input 'F' or 'NF' for 5th field. Moving on");
-							else if(!checkState(state))
+								return true;
+							} else if(!checkState(state)) {
 								JOptionPane.showMessageDialog(null, "Must input valid US State. Moving on");
-							else
+								return true;
+							} else
 								return false;
 						}
-					} else if(item.equals("clothing")){
-						if(command.length != 6) 
+					} else if(item.equals("clothing")){  //Clothing specific test 
+						if(command.length != 6) {
 							JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
-						else
+							return true;
+						} else
 							return false;
 					}
 				}
 			} 
-			return true;
+			return false;
 		}
 		
 
