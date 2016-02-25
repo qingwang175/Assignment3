@@ -99,14 +99,14 @@ public class Functions {
 		return;
 	}
 	
-	public ArrayList<Item> updateItem(ArrayList<Item> shoppingCart, String name, int quantity) {
+	public ArrayList<Item> updateItem(ArrayList<Item> shoppingCart, String name, double quantity) {
 		if(shoppingCart.size() == 0) {     //Don't bother checking empty cart
 			errorMessage("Empty cart");
 		} else {
 			for(int i = 0; i < shoppingCart.size(); i++) {    //Check through the arraylist
 				Item temp = shoppingCart.get(i);
 				if(name.equals(temp.name)) {
-					shoppingCart.get(i).quantity = quantity;
+					shoppingCart.get(i).quantity = (int) quantity;
 					System.out.println(name + " quantity updated to " + quantity + ".");   //Only change the first item of this name and then leave
 					return shoppingCart;
 				}
