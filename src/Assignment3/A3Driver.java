@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import java.io.*;
 
-public class ShoppingCartDriver {
+public class A3Driver{
 
 	  public static void main(String[] args) {
 
@@ -40,7 +40,7 @@ public class ShoppingCartDriver {
 						} else if (temp.equals("search")) {
 							function.searchItem(shoppingCart, command[1]);
 						} else if (temp.equals("update")) {
-							shoppingCart = function.updateItem(shoppingCart, command[1], Integer.parseInt(command[2]));
+							shoppingCart = function.updateItem(shoppingCart, command[1], Double.parseDouble(command[2]));
 						} else if (temp.equals("print")) {
 							function.printAll(shoppingCart);
 						}
@@ -77,11 +77,8 @@ public class ShoppingCartDriver {
 			else if((s.equals("update"))){
 				if(command.length != 3)
 					JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
-				else if(isDouble(command[2])) //check quantity
-					if(!isInteger(command[2]) || Integer.parseInt(command[2]) < 0)
-						JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
-					else
-						return false;
+				else if (!isInteger(command[2]))
+					JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
 				else
 					return false;
 			} else if(s.equals("print") && command.length != 1){
@@ -93,18 +90,12 @@ public class ShoppingCartDriver {
 					String item = command[1].toLowerCase();
 					if(!(item.equals("electronics") || item.equals("groceries") || item.equals("clothing")))
 						JOptionPane.showMessageDialog(null, "Not a proper item type. Moving on.");
-					else if(!isDouble(command[3]) || Double.parseDouble(command[3]) < 0) //check price
+					else if(!isDouble(command[3])) //check price
 						JOptionPane.showMessageDialog(null, "Not a proper price. Moving on.");
-					else if(!isDouble(command[4])) //check quantity
-						if(!isInteger(command[4]) || Integer.parseInt(command[4]) < 0)
-							JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
-						else
-							return true;
-					else if(!isDouble(command[5])) //check weight
-						if(!isInteger(command[5]) || Integer.parseInt(command[5]) < 0)
-							JOptionPane.showMessageDialog(null, "Not a proper weight. Moving on.");
-						else
-							return true;
+					else if(!isInteger(command[4])) //check quantity
+						JOptionPane.showMessageDialog(null, "Not a proper quantity. Moving on.");
+					else if(!isInteger(command[5])) //check weight
+						JOptionPane.showMessageDialog(null, "Not a proper weight. Moving on.");
 					else if(item.equals("groceries")){
 						if(command.length != 7)
 							JOptionPane.showMessageDialog(null, "Need to indicate perishability. Moving on.");
@@ -130,23 +121,23 @@ public class ShoppingCartDriver {
 								return false;
 						}
 					} else if(item.equals("clothing")){
-						if(command.length != 6) {
+						if(command.length != 6) 
 							JOptionPane.showMessageDialog(null, "Not a proper command. Moving on.");
-						}
+						else
+							return false;
 					}
 				}
-			} else {
-				return false; 
-			}
+			} 
 			return true;
 		}
 		
+
 		//checks if String is an integer
-		public static boolean isInteger(String str) {
-		    try {
-		        Integer.parseInt(str);
-		        return true;
-		    } catch (NumberFormatException nfe) {
+		public static boolean isInteger(String str){
+			try{
+				double number = Double.parseDouble(str);
+				return (number % 1 == 0 && number > 0);
+			} catch(NumberFormatException nfe) {
 		        return false;
 		    }
 		}
@@ -154,8 +145,8 @@ public class ShoppingCartDriver {
 		//checks if String is a double
 		public static boolean isDouble(String str) {
 		    try {
-		        Double.parseDouble(str);
-		        return true;
+		        double number = Double.parseDouble(str);
+		        return (number > 0);
 		    } catch (NumberFormatException nfe) {
 		        return false;
 		    }
